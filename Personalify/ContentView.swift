@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var name: String = ""
+    @State private var age: String = ""
+    
     var body: some View {
         NavigationView{
             VStack {
@@ -20,14 +24,16 @@ struct ContentView: View {
                     .lineLimit(nil)
                     .padding(.top)
                     .frame(height: 50.0)
-                TextField("Name", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                TextField("Name", text: $name)
                     .padding(.all)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.words/*@END_MENU_TOKEN@*/)
-                TextField("Age", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                TextField("Age", text: $age)
                     .padding(.all)
                     .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
                 Spacer()
-                NavigationLink(destination: PageOne()){
+                NavigationLink(destination: PageOne(
+                    name: name, age: age)
+                ){
                     Text("Next")
                 }
             }
